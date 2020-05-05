@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.club.club.mapper.TClubActivityMapper">
+
+<select id="selectGroupByay" resultType="com.example.demo.club.club.entity.TClubActivity">
+select DATE_FORMAT(create_date,'%Y%m%d') date,sum(funds) funds from t_club_activity group by date; 
+</select>
+</mapper>

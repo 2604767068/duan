@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.club.club.mapper.TClubUserMapper">
+
+	<select id="selectmyClubInfo" resultType="com.example.demo.club.club.entity.TClubUser">
+		SELECT
+		cu.user_id,
+		cu.id,
+		cu.user_type,
+		cu.tips,
+		cu.`status`,
+		cu.join_date,
+		cu.alias_user_name,
+		c.`name` AS clubName,
+		cu.club_id,
+		c.avatar,
+		c.`status` as clubStatus,
+		c.tips as clubTips,
+		c.reason as clubReason
+	FROM
+		t_club_user cu
+		LEFT JOIN t_club c ON cu.club_id = c.id 
+		
+		${ew.customSqlSegment}
+	</select>
+	
+	<select id="selectClubUser" resultType="com.example.demo.club.club.entity.TClubUser">
+		SELECT
+		u.`name` AS userName,
+		u.avatar AS userAvatar,
+		cu.user_type,
+		cu.tips,
+		cu.`status`,
+		cu.join_date,
+		cu.alias_user_name,
+		cu.id,
+		cu.club_id 
+	FROM
+		t_club_user cu
+		LEFT JOIN t_user u ON u.id = cu.user_id
+		${ew.customSqlSegment}
+	</select>
+</mapper>
